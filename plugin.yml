@@ -1,6 +1,6 @@
 name: PlanB
 main: planb\PlanB
-version: 1.3.0
+version: "1.4 Security"
 api: [1.13.1, 2.0.0]
 load: POSTWORLD
 author: Gamecrafter
