@@ -24,8 +24,6 @@ class PlanBCommand extends Command{
      */
     private function sendCommandHelp(CommandSender $sender){
         $commands = [
-            "addbackup" => "Adds a player to backups.txt",
-            "delbackup" => "Removes a player from backups.txt",
             "help" => "Shows all PlanB commands",
             "list" => "Lists all backup players",
             "restore" => "Restores OP status of all online players listed in backup.txt"
@@ -47,46 +45,6 @@ class PlanBCommand extends Command{
         }
         if(isset($args[0])){
             switch(strtolower($args[0])){
-                case "a":
-                case "addbackup":
-                    if(isset($args[1])){
-                        if($sender instanceof ConsoleCommandSender){
-                            if($this->plugin->isBackupPlayer($args[1])){
-                                $sender->sendMessage(TextFormat::RED.$args[1]." already exists in backups.txt.");
-                            }
-                            else{
-                                $this->plugin->addBackup($args[1]);
-                                $sender->sendMessage(TextFormat::GREEN."Added ".$args[1]." to backups.txt.");
-                            }
-                        }
-                        else{
-                            $sender->sendMessage(TextFormat::RED."Please run this command on the console.");
-                        }
-                    }
-                    else{
-                        $sender->sendMessage(TextFormat::RED."Please specify a valid player."); 
-                    }
-                    return true;
-                case "d":
-                case "delbackup":
-                    if(isset($args[1])){
-                        if($sender instanceof ConsoleCommandSender){
-                            if($this->plugin->isBackupPlayer($args[1])){
-                                $this->plugin->removeBackup($args[1]);
-                                $sender->sendMessage(TextFormat::GREEN."Removed ".$args[1]." from backups.txt.");
-                            }
-                            else{
-                                $sender->sendMessage(TextFormat::RED.$args[1]." does not exist in backups.txt.");
-                            }
-                        }
-                        else{
-                            $sender->sendMessage(TextFormat::RED."Please run this command on the console.");
-                        }
-                    }
-                    else{
-                        $sender->sendMessage(TextFormat::RED."Please specify a valid player.");
-                    }
-                    return true;
                 case "help":
                     $this->sendCommandHelp($sender);
                     return true;
